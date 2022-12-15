@@ -1,29 +1,28 @@
 <?php
+
 namespace Cowell\Region\Model\Config;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
 class CountryId implements OptionSourceInterface
 {
-    protected $region;
-
     public function __construct(
-        \Cowell\Region\Model\ResourceModel\Region $region
+        \Magento\Directory\Model\ResourceModel\Country\CollectionFactory $collectionFactory
     )
     {
-        $this->region = $region;
+        $this->region = $collectionFactory;
     }
 
     public function toOptionArray()
     {
-        $countryId = $this->region->getCountryId();
+        $country = [];
+        $collection = $this->region->create();
+        $items = $collection->addFieldToSelect('country_id')->getColumnValues('country_id');
 
-        $array = [];
-        foreach ($countryId as $key => $item){
-            $array[] = ['value' => $key, 'label' => $item];
+        $countries = array_unique($items);
+        foreach ($countries as $value) {
+            $country[] = ['label' => $value, 'value' => $value];
         }
-
-
-        return $array;
+        return $country;
     }
 }

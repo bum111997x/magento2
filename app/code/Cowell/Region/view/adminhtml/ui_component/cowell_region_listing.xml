@@ -121,10 +121,12 @@
         </column>
         <column name="country_id" sortOrder="30">
             <settings>
+                <options class="Cowell\Region\Model\Config\CountryId"/>
                 <filter>select</filter>
                 <label translate="true">Country ID</label>
+                <dataType>select</dataType>
                 <editor>
-                    <editorType>text</editorType>
+                    <editorType>select</editorType>
                     <validation>
                         <rule name="required-entry" xsi:type="boolean">false</rule>
                     </validation>

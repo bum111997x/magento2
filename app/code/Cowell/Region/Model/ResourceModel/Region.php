@@ -15,14 +15,6 @@ class Region extends AbstractDb
         $this->_init('directory_country_region', 'region_id');
     }
 
-    public function getCountryId(){
-        $connect = $this->getConnection();
-        $table = $connect->getTableName('directory_country');
-        $countryId = $connect->fetchCol('SELECT country_id FROM ' . $table);
-
-        return $countryId;
-    }
-
     public function saveLocaleName($data, $region_id ,$update=null){
         $connect = $this->getConnection();
         $array = [
@@ -36,4 +28,6 @@ class Region extends AbstractDb
         }
         $connect->insert('directory_country_region_name', $array);
     }
+
+
 }
