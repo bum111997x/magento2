@@ -1,0 +1,10 @@
+<?php
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
+/* File: app/code/Atwix/CatalogAttribute/view/frontend/templates/product_brand.phtml */
+$_item = $block->getItem();
+$product = $_item->getData('shipping_fee');
+?>
+
+<div class="product-brand">
+    <p><strong>Shipping Fee: </strong><?php echo $product ?></p>
+</div>

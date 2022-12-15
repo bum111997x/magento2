@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<label for="">
+    Shipping Method:
+</label>
+<div>
+    <?= $block->getProduct()->getShippingMe()?>
+</div>
+<label for="">
+    Payment Fee:
+</label>
+<div>
+    <?=  $block->getProduct()->getPaymentFe() ? $block->getProduct()->getPaymentFe() : 0 ?>
+</div>

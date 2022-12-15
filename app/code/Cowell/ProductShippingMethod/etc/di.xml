@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="CoWell_Product_Plugin" type="Cowell\ProductShippingMethod\Plugin\AddressPlugin" sortOrder="10"
+                disabled="false"/>
+    </type>
+        <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="dropdown_attribute_quote_to_order_item"
+                type="Cowell\ProductShippingMethod\Plugin\ShippingFeeQuoteToOrderItem"/>
+    </type>
+    <type name="Magento\Quote\Model\Cart\Totals\ItemConverter">
+        <plugin name="cart-total-localstorage" type="Cowell\ProductShippingMethod\Plugin\CartTotalPlugin"/>
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Items\Column\DefaultColumn">
+        <plugin disabled="false" name="add-option-product" type="Cowell\ProductShippingMethod\Plugin\GetOrderOptionsPlugin"/>
+    </type>
+    <type name="Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer">
+        <plugin disabled="false" name="add-option-product-sale-order" type="Cowell\ProductShippingMethod\Plugin\GetItemOptionsPlugin"/>
+    </type>
+</config>
+
+

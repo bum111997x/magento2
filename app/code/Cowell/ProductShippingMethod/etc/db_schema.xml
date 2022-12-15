@@ -1,0 +1,9 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="quote_item">
+        <column name="payment_fee" xsi:type="decimal" nullable="true" comment="shipping_fee"/>
+    </table>
+    <table name="sales_order_item">
+        <column name="payment_fee" xsi:type="decimal" nullable="true" comment="shipping_fee"/>
+    </table>
+</schema>
