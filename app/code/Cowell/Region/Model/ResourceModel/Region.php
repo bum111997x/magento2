@@ -17,16 +17,21 @@ class Region extends AbstractDb
 
     public function saveLocaleName($data, $region_id ,$update=null){
         $connect = $this->getConnection();
-        $array = [
-            'locale' => $data[0]['locale'],
-            'region_id' => $region_id,
-            'name' => $data[0]['value']
-        ];
 
-        if ($update){
-            $connect->delete('directory_country_region_name', $region_id);
+        $array = [];
+
+        foreach ($data as $item){
+            $array[] = [
+                'locale' => $item['locale'],
+                'region_id' => $region_id,
+                'name' => $item['value']
+            ];
         }
-        $connect->insert('directory_country_region_name', $array);
+        if ($update){
+            $connect->insertOnDuplicate('directory_country_region_name', $array);
+        }
+        $connect->insertMultiple('directory_country_region_name', $array);
+
     }
 
 

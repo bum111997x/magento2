@@ -1,0 +1,119 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="CoWell\BasicTraining\Api\StudentRepositoryInterface"
+                type="CoWell\BasicTraining\Model\StudentRepository"/>
+    <preference for="CoWell\BasicTraining\Api\Data\StudentInterface" type="CoWell\BasicTraining\Model\Student"/>
+    <preference for="CoWell\BasicTraining\Api\Data\StudentSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="cowell_basictraining_training_listing_data_source" xsi:type="string">
+                    CoWell\BasicTraining\Model\ResourceModel\Student\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="CoWell\BasicTraining\Model\ResourceModel\Student\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">students</argument>
+            <argument name="resourceModel" xsi:type="string">CoWell\BasicTraining\Model\ResourceModel\Student</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="sample_attribute" xsi:type="string">sales_order.sample_attribute</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="CoWell\BasicTraining\Model\ImageUploader">
+        <arguments>
+            <!-- Temporary file stored in pub/media/faq/tmp/icon -->
+            <argument name="baseTmpPath" xsi:type="string">faq/tmp/icon</argument>
+            <argument name="basePath" xsi:type="string">faq/icon</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+    <!--    <type name="Magento\Customer\Block\Adminhtml\Edit\SaveButton">-->
+    <!--        <plugin name="CoWell_BasicTraining_Plugin" type="CoWell\BasicTraining\Plugin\SaveButtonPlugin" sortOrder="10" disabled="false"  />-->
+    <!--    </type>-->
+    <!--    <preference for="Magento\Customer\Block\Adminhtml\Edit\SaveButton" type="CoWell\BasicTraining\Block\Adminhtml\Edit\Rewrite\SaveButton" />-->
+    <type name="Magento\Ui\Component\MassAction">
+        <plugin name="CoWell_BasicTraining_Plugin" type="CoWell\BasicTraining\Plugin\MassActionPlugin" sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="CoWell_BasicTraining_Plugin" type="CoWell\BasicTraining\Plugin\GetNameProductPlugin"
+                sortOrder="10" disabled="false"/>
+    </type>
+    <!--    <type name="Magento\Quote\Model\Quote\Address">-->
+    <!--        <plugin name="CoWell_BasicTraining_Plugin" type="CoWell\BasicTraining\Plugin\AddressPlugin" sortOrder="10" disabled="false" />-->
+    <!--    </type>-->
+    <type name="CoWell\BasicTraining\Api\StudentRepositoryInterface">
+        <plugin name="CoWell_BasicTraining_Plugin"
+                type="CoWell\BasicTraining\Plugin\StudentProductExtensionAttributePlugin" sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="exampleSayHello" xsi:type="object">CoWell\BasicTraining\Console\Command\SomeCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="CoWell\BasicTraining\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="CoWell\BasicTraining\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">myLoggerName</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">CoWell\BasicTraining\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="dropdown_attribute_quote_to_order_item"
+                type="CoWell\BasicTraining\Plugin\ShippingFeeQuoteToOrderItem"/>
+    </type>
+
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="show-extra-attribute-checkout-summary-product"
+                type="CoWell\BasicTraining\Plugin\Defaultconfigprovider"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Cart\Totals\ItemConverter">
+        <plugin name="cart-total-localstorage" type="CoWell\BasicTraining\Plugin\CartTotalPlugin"/>
+    </type>
+
+    <type name="Magento\Checkout\CustomerData\DefaultItem">
+        <plugin disabled="false" name="AddAttPlug" type="CoWell\BasicTraining\Plugin\DefaultItemPlugin"/>
+    </type>
+
+    <type name="Magento\Sales\Block\Adminhtml\Items\Column\DefaultColumn">
+        <plugin disabled="false" name="add-option-product" type="CoWell\BasicTraining\Plugin\GetOrderOptionsPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Grid\Collection">
+        <plugin name="beforeLoadWithFilter"
+                type="CoWell\BasicTraining\Plugin\AddSampleToLoadWithFilter"/>
+    </type>
+
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="students" xsi:type="string">ExampleCorp_Learning</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
+
+

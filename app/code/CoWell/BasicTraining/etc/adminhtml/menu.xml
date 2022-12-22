@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="CoWell_BasicTraining::students" title="Students" module="CoWell_BasicTraining" sortOrder="51"
+             resource="CoWell_BasicTraining::student"/>
+        <add id="CoWell_BasicTraining::manage_student" title="Manage Students" module="CoWell_BasicTraining" sortOrder="10"
+             action="cowell/training/index" resource="CoWell_BasicTraining::student_configuration" parent="CoWell_BasicTraining::students"/>
+        <add id="CoWell_BasicTraining::student_configuration" title="Configuration" module="CoWell_BasicTraining" sortOrder="99"
+             parent="CoWell_BasicTraining::students" action="adminhtml/system_config/edit/section/helloworld"
+             resource="CoWell_BasicTraining::student_configuration"/>
+    </menu>
+</config>

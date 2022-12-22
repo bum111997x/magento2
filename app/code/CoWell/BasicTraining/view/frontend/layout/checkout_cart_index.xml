@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <!-- Start of the main content that needs to be added-->
+                                <item name="discount" xsi:type="array">
+                                    <!-- The path to our js file-->
+                                    <item name="component" xsi:type="string">
+                                        CoWell_BasicTraining/js/view/checkout/summary/discount-fee
+                                    </item>
+                                    <item name="sortOrder" xsi:type="string">20</item>
+                                    <item name="config" xsi:type="array">
+                                        <!-- Show custom discount on order summary-->
+                                        <item name="discount" xsi:type="string" translate="true">Custom Discount</item>
+                                    </item>
+                                </item>
+                                <item name="discount1" xsi:type="array">
+                                    <!-- The path to our js file-->
+                                    <item name="component" xsi:type="string">
+                                        CoWell_BasicTraining/js/view/checkout/summary/shipping_fee
+                                    </item>
+                                    <item name="sortOrder" xsi:type="string">40</item>
+                                    <item name="config" xsi:type="array">
+                                        <!-- Show custom discount on order summary-->
+                                        <item name="discount1" xsi:type="string" translate="true">Shipping Fee</item>
+                                    </item>
+                                </item>
+                                <!--  End-->
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceBlock name="additional.product.info">
+            <block class="CoWell\BasicTraining\Block\CartItemBrandBlock"
+                   name="cowell.cart.item.brand" template="CoWell_BasicTraining::product_ship.phtml" before="-">
+            </block>
+        </referenceBlock>
+
+    </body>
+</page>

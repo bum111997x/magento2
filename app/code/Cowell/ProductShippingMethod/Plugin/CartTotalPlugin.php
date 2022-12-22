@@ -6,7 +6,6 @@ class CartTotalPlugin
 {
     protected $_checkoutSession;
 
-
     public function __construct(\Magento\Checkout\Model\Session $checkoutSession,)
     {
         $this->_checkoutSession = $checkoutSession;

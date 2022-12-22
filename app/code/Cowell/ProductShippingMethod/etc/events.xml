@@ -2,4 +2,5 @@
     <event name="sales_quote_item_set_product">
         <observer name="set_item_dropdown_attribute" instance="Cowell\ProductShippingMethod\Observer\SetItemCustomAttributeToQuoteItem" />
     </event>
+
 </config>

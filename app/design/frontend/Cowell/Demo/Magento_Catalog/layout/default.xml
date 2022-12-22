@@ -1,0 +1,8 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="product.info.price"  destination="product.info.main" after="-"/>
+        <referenceContainer name="page-footer">
+            <block class="Magento\Framework\View\Element\Template" name="before.footer" template="Magento_Catalog::footer.phtml" before="-" />
+        </referenceContainer>
+    </body>
+</page>

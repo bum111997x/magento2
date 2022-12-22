@@ -4,13 +4,19 @@
  * See COPYING.txt for license details.
  */
 ?>
-<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */
+$shippings =  $block->getProduct()->getShippingMe() ? $block->getProduct()->getShippingMe() : "";
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$method = $objectManager->create('Cowell\ProductShippingMethod\Helper\ShippingMethods')
+?>
 <label for="">
     Shipping Method:
 </label>
+
 <div>
-    <?= $block->getProduct()->getShippingMe()?>
+    <?= $method->get($shippings) ?>
 </div>
+
 <label for="">
     Payment Fee:
 </label>

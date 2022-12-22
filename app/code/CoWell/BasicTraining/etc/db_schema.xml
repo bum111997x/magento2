@@ -1,0 +1,73 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="cowell_basictraining_training">
+        <column xsi:type="int" name="training_id" padding="10" unsigned="true" nullable="false" comment="Entity Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="training_id"/>
+        </constraint>
+    </table>
+
+    <table name="students">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"  />
+        <column xsi:type="varchar" name="name" length="255"  nullable="true" comment="Student name" />
+        <column xsi:type="tinyint" name="gender"  nullable="true" comment="Gender student" />
+        <column xsi:type="date" name="dob"  nullable="true" comment="Date of birth" />
+        <column xsi:type="text" name="address"  nullable="true" comment="Address student"/>
+        <column xsi:type="text" name="img"  nullable="true" comment="Image student"/>
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+
+        <index referenceId="students_name" indexType="btree">
+            <column name ='name'/>
+        </index>
+    </table>
+
+    <table name="catalog_product_students" resource="default" engine="innodb">
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" identity="false"
+                comment="Product ID"/>
+        <column xsi:type="int" name="student_id" unsigned="true" nullable="false" identity="false"
+                comment="Student ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="product_id"/>
+            <column name="student_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CATALOG_PRODUCT_WEBSITE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="catalog_product_students" column="student_id" referenceTable="students"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="CAT_PRD_WS_PRD_ID_CAT_PRD_ENTT_ENTT_ID" table="catalog_product_students"
+                    column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="CATALOG_PRODUCT_WEBSITE_WEBSITE_ID" indexType="btree">
+            <column name="student_id"/>
+        </index>
+    </table>
+    <table name="quote">
+        <column name="sample_attribute" xsi:type="varchar" length="255"  nullable="true" comment="sample_attribute" />
+    </table>
+    <table name="quote_item">
+        <column name="sample_attribute" xsi:type="varchar" length="255"  nullable="true" comment="sample_attribute" />
+        <column name="shipping_fee" xsi:type="decimal"  nullable="true" comment="shipping_fee" />
+    </table>
+    <table name="sales_order">
+        <column name="sample_attribute" xsi:type="varchar" length="255"  nullable="true" comment="sample_attribute" />
+    </table>
+    <table name="sales_order_item">
+        <column name="sample_attribute" xsi:type="varchar" length="255"  nullable="true" comment="sample_attribute" />
+        <column name="shipping_fee" xsi:type="decimal"  nullable="true" comment="shipping_fee" />
+    </table>
+    <table name="sales_order_grid">
+        <column name="sample_attribute" xsi:type="varchar" length="255"  nullable="true" comment="sample_attribute" />
+    </table>
+
+    <table name="sales_order_shipping_fee" resource="default" engine="innodb">
+        <column xsi:type="int" name="sales_order_id" unsigned="true" nullable="false" identity="false"
+                comment="sale_order_id"/>
+        <column xsi:type="varchar" name="sample_attribute_2" nullable="true"
+                comment="sample_attribute_2"/>
+    </table>
+</schema>
+
+

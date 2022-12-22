@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var $block \Magento\Sales\Block\Adminhtml\Items\Column\Name
+ */
+$_item = $block->getItem();
+$shipping = $_item->getShippingFee() ? $_item->getShippingFee() : 0;
+?>
+<div>
+    <span><?= $shipping ?></span>
+</div>

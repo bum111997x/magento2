@@ -1,0 +1,161 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">cowell_student_form.cowell_student_form_data_source</item>
+        </item>
+        <item name="label" translate="true" xsi:type="string">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button class="CoWell\BasicTraining\Block\Adminhtml\Training\Edit\Back" name="back"/>
+            <button class="CoWell\BasicTraining\Block\Adminhtml\Training\Edit\Delete" name="delete"/>
+            <button class="CoWell\BasicTraining\Block\Adminhtml\Training\Edit\Save" name="save"/>
+            <button class="CoWell\BasicTraining\Block\Adminhtml\Training\Edit\SaveAndContinue" name="save_and_continue"/>
+        </buttons>
+        <namespace>cowell_student_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>cowell_student_form.cowell_student_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="cowell_student_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <validateUrl path="cowell/training/validate"></validateUrl>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="CoWell\BasicTraining\Model\DataProvider" name="cowell_student_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label></label>
+        </settings>
+        <field formElement="input" name="name" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Training</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+        <field formElement="date" name="dob" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Training</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Date of Birth</label>
+                <dataScope>dob</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+        <field formElement="input" name="address" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Training</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Address</label>
+                <dataScope>address</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+        <field formElement="select" name="gender" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Training</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Gender</label>
+                <dataScope>gender</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Cowell\Region\Model\Config\Gender" />
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="img">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">Training</item>
+                    <item name="label" xsi:type="string" translate="true">Group Image</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">CoWell_BasicTraining/image-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="cowell/training/upload"/>
+                    </item>
+                </item>
+            </argument>
+        </field>
+<!--        <field name="img" sortOrder="200" formElement="imageUploader">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="source" xsi:type="string">Training</item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--            <settings>-->
+<!--                <elementTmpl>ui/form/element/uploader/image</elementTmpl>-->
+<!--                <dataType>string</dataType>-->
+<!--                <label translate="true">Image</label>-->
+<!--                <visible>true</visible>-->
+<!--                <required>false</required>-->
+<!--            </settings>-->
+<!--            <formElements>-->
+<!--                <imageUploader>-->
+<!--                    <settings>-->
+<!--                        <required>false</required>-->
+<!--                        <uploaderConfig>-->
+<!--                            <param xsi:type="url" name="url" path="cowell/training/upload"/>-->
+<!--                        </uploaderConfig>-->
+<!--                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>-->
+<!--                        <openDialogTitle>Media Gallery</openDialogTitle>-->
+<!--                        <initialMediaGalleryOpenSubpath>uiexample/index</initialMediaGalleryOpenSubpath>-->
+<!--                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>-->
+<!--                        <maxFileSize>4194304</maxFileSize>-->
+<!--                    </settings>-->
+<!--                </imageUploader>-->
+<!--            </formElements>-->
+<!--        </field>-->
+    </fieldset>
+</form>
+

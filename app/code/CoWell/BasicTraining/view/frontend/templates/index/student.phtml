@@ -1,0 +1,69 @@
+<?php
+/* @var Student $block */
+
+use CoWell\BasicTraining\Block\Index\Student;
+
+$studentCollection = $block->getStudent();
+?>
+<form action="" method="get">
+    <div>
+        <label for="">Entity ID</label>
+        <input type="text" name="entity_id">
+    </div>
+    <div>
+        <label for="">Name</label>
+        <input type="text" name="name">
+    </div>
+    <div>
+        <label for="">Gender</label>
+        <select name="gender" id="">
+            <option value="0" disabled selected>Pick Gender</option>
+            <option value="1">Nam</option>
+            <option value="2">Nu</option>
+        </select>
+    </div>
+    <div>
+        <label for="">Age</label>
+        <input type="range" name="age" min="0" max="100">
+    </div>
+    <div>
+        <label for="">Sort</label>
+        <select name="sort" id="">
+            <option value="0" disabled selected>Pick Sort</option>
+            <option value="id_ASC">Entity ID ASC</option>
+            <option value="id_DES">Entity ID DES</option>
+            <option value="name_ASC">Name ASC</option>
+            <option value="name_DES">Name DES</option>
+            <option value="dob_ASC">Date of birth ASC</option>
+            <option value="dob_DES">Date of birth DES</option>
+        </select>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of birth</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($studentCollection->getCollection() as $student): ?>
+            <tr>
+                <td><?= $student->getEntityId() ?></td>
+                <td><a href="<?=$this->getUrl('student') . $student->getEntityId()?>"><?= $student->getName() ?></a></td>
+                <td><?= $student->getGender() == 1 ? "Male" : "Female" ?></td>
+                <td><?= $student->getDob() ?></td>
+                <td><?= $student->getAddress() ?></td>
+            </tr>
+        <?php endforeach ?>
+        </tbody>
+    </table>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+</div>

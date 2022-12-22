@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
+        <attribute code="sample_attribute" type="string"/>
+    </extension_attributes>
+
+    <extension_attributes for="CoWell\BasicTraining\Api\Data\StudentInterface">
+        <attribute code="product_info" type="Magento\Catalog\Api\Data\ProductInterface[]" />
+    </extension_attributes>
+
+    <extension_attributes for="Magento\Quote\Api\Data\TotalsItemInterface">
+        <attribute code="shipping_fee" type="string" />
+    </extension_attributes>
+</config>

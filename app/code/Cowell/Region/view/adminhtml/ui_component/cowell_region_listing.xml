@@ -135,7 +135,6 @@
         </column>
         <column name="iso3_code" sortOrder="40">
             <settings>
-                <filter>select</filter>
                 <label translate="true">Iso3 Code</label>
                 <editor>
                     <editorType>text</editorType>

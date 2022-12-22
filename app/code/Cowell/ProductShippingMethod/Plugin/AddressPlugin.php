@@ -4,11 +4,14 @@ namespace Cowell\ProductShippingMethod\Plugin;
 
 class AddressPlugin
 {
-    public function afterGetGroupedAllShippingRates(\Magento\Quote\Model\Quote\Address $subject, $result){
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $cart = $objectManager->get('\Magento\Checkout\Model\Cart');
+    protected $cart;
+    public function __construct(\Magento\Checkout\Model\Cart $cart)
+    {
+        $this->cart = $cart;
+    }
 
-        $items = $cart->getQuote()->getAllItems();
+    public function afterGetGroupedAllShippingRates(\Magento\Quote\Model\Quote\Address $subject, $result){
+        $items = $this->cart->getQuote()->getAllItems();
         $array = [];
 
         foreach ($items as $item){

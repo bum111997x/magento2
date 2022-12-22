@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="CoWell\BasicTraining\Block\Index\Student" name="index.student"
+                   template="CoWell_BasicTraining::index/student.phtml">
+                <arguments>
+                    <argument name="student" xsi:type="object">CoWell\BasicTraining\ViewModel\Student</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

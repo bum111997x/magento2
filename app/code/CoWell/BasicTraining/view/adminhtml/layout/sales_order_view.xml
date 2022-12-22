@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="order_items">
+            <block class="Magento\Sales\Block\Adminhtml\Items\Column\Qty" name="column_shipping_fee"
+                   template="CoWell_BasicTraining::items/column/shipping_fee.phtml" group="column"/>
+        </referenceBlock>
+        <referenceBlock name="order_items">
+            <arguments>
+                <argument name="columns" xsi:type="array">
+                    <item name="shipping_fee" xsi:type="string" translate="true">Shipping Fee</item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="default_order_items_renderer">
+            <arguments>
+                <argument name="columns" xsi:type="array">
+                    <item name="shipping_fee" xsi:type="string" translate="false">col-total</item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="column_name">
+            <block class="Magento\Sales\Block\Adminhtml\Items\Column\Name" name="column_name_shipping"
+                   template="CoWell_BasicTraining::items/column/name.phtml" group="column"/>
+        </referenceBlock>
+    </body>
+</page>

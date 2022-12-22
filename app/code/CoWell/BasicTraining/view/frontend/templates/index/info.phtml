@@ -1,0 +1,32 @@
+<?php
+/* @var Info $block */
+
+use CoWell\BasicTraining\Block\Index\Info;
+
+$student = $block->getInfo();
+
+?>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of birth</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+
+    <tr>
+        <td><?= $student->getInfoStudent()->getEntityId() ?></td>
+        <td><?= $student->getInfoStudent()->getName() ?></td>
+        <td><?= $student->getInfoStudent()->getGender() == 1 ? 'Nam' : 'Nu' ?></td>
+        <td><?= $student->getInfoStudent()->getDob() ?></td>
+        <td><?= $student->getInfoStudent()->getAddress() ?></td>
+    </tr>
+
+        </tbody>
+    </table>
+</div>

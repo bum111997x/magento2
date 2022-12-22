@@ -58,7 +58,7 @@
             <formElements>
                 <select>
                     <settings>
-                        <options class="Cowell\Region\Model\Config\CountryId"/>
+                        <options class="Magento\Directory\Model\Config\Source\Country"/>
                     </settings>
                 </select>
             </formElements>
@@ -128,7 +128,7 @@
                     <formElements>
                         <select>
                             <settings>
-                                <options class="Cowell\Region\Model\Config\Locale"/>
+                                <options class="Magento\Config\Model\Config\Source\Locale"/>
                                 <caption translate="true">-- Please Select --</caption>
                             </settings>
                         </select>
